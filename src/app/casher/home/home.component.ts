@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit {
   constructor(private casherService: CasherService, private dataStorageService: DataStorageService) { }
 
   ngOnInit(): void {
+    console.log("newwwwww");
+
+
     this.casherService.isStoring.next(true);
     this.executeFunctions();
   }
@@ -28,6 +31,7 @@ export class HomeComponent implements OnInit {
       this.dataStorageService.fetchTables().subscribe(
         (respose: number[]) => {
           this.arrOfTables = respose;
+          localStorage.setItem('tableCount', JSON.stringify(respose));
           this.casherService.isStoring.next(false);
         }
       );

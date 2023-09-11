@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
         this.authService.user.subscribe(
           (user) => {
             for (let i = 0; i < this.users.length; i++) {
-              if ((this.users[i].email).toLowerCase() == user.email) {
+              if ((this.users[i]?.email).toLowerCase() == user?.email) {
                 this.isAdmin = this.users[i].isAdmin;
               }
             }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { AlertComponent } from 'src/app/shared/alert/alert.component';
 import { PlaceholderDirective } from 'src/app/shared/placeholder.directive';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
+import { CasherService } from 'src/app/casher/casher.service';
 
 @Component({
   selector: 'app-login',
@@ -18,10 +20,16 @@ export class LoginComponent implements OnInit {
   @ViewChild(PlaceholderDirective) alertHost!: PlaceholderDirective;
   private closeSub!: Subscription;
 
-  constructor(private authService: AuthService, private _router: Router, private componentFactoryResolver: ComponentFactoryResolver) {
+  constructor(private authService: AuthService, private _router: Router, private componentFactoryResolver: ComponentFactoryResolver, private dataStorageService: DataStorageService, private casherService: CasherService) {
   }
 
   ngOnInit(): void {
+    this.dataStorageService.fetchTables().subscribe(
+      (respose: number[]) => {
+        localStorage.setItem('tableCount', JSON.stringify(respose));
+        this.casherService.arrOfTablesChanged.next(respose);
+      }
+    )
   }
 
   ngOnDestroy(): void {

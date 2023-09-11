@@ -30,7 +30,7 @@ export class NavbarComponent implements OnInit {
         this.authService.user.subscribe(
           (user) => {
             for (let i = 0; i < this.users.length; i++) {
-              if ((this.users[i].email).toLowerCase() == user.email) {
+              if ((this.users[i]?.email).toLowerCase() == user?.email) {
                 this.name = this.users[i].name;
               }
             }

@@ -33,7 +33,19 @@ export class TablesComponent implements OnInit, AfterViewInit {
   constructor(private casherService: CasherService, private dataStorageService: DataStorageService, private _router: Router, private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.arrOfTables = JSON.parse(localStorage.getItem('tableCount')!);
+    if (JSON.parse(localStorage.getItem('tableCount')!) == null) {
+      this.casherService.arrOfTablesChanged.subscribe(
+        (res) => {
+          this.arrOfTables = res;
+          console.log(res);
+        }
+      )
+    } else {
+      this.arrOfTables = JSON.parse(localStorage.getItem('tableCount')!);
+    }
+    console.log(this.arrOfTables);
+
+
     this.handleTables();
 
     this.userSub = this.authService.user.subscribe(
@@ -143,12 +155,12 @@ export class TablesComponent implements OnInit, AfterViewInit {
   }
 
   handleTables() {
-    if (this.arrOfTables.length > 0 && this.arrOfTables.length <= 6) {
+    if (this.arrOfTables?.length > 0 && this.arrOfTables?.length <= 6) {
       for (let i = 0; i < this.arrOfTables.length; i++) {
         this.tableNumListOne.push(this.arrOfTables[i])
       }
     }
-    else if (this.arrOfTables.length > 6 && this.arrOfTables.length <= 12) {
+    else if (this.arrOfTables?.length > 6 && this.arrOfTables?.length <= 12) {
       for (let i = 0; i < 6; i++) {
         this.tableNumListOne.push(this.arrOfTables[i])
       }
@@ -156,7 +168,7 @@ export class TablesComponent implements OnInit, AfterViewInit {
         this.tableNumListTwo.push(this.arrOfTables[i])
       }
     }
-    else if (this.arrOfTables.length > 12 && this.arrOfTables.length <= 18) {
+    else if (this.arrOfTables?.length > 12 && this.arrOfTables?.length <= 18) {
       for (let i = 0; i < 6; i++) {
         this.tableNumListOne.push(this.arrOfTables[i])
       }
@@ -167,7 +179,7 @@ export class TablesComponent implements OnInit, AfterViewInit {
         this.tableNumListThree.push(this.arrOfTables[i])
       }
     }
-    else if (this.arrOfTables.length > 18 && this.arrOfTables.length <= 24) {
+    else if (this.arrOfTables?.length > 18 && this.arrOfTables?.length <= 24) {
       for (let i = 0; i < 6; i++) {
         this.tableNumListOne.push(this.arrOfTables[i])
       }

@@ -4,15 +4,18 @@
     <div class="row">
       <div class="header d-flex justify-content-between align-items-center">
         <h2 class="m-0">table list</h2>
-        <div class="btns">
+        <div class="btns" *ngIf="arrOfTables.length != null">
           <button class="first-partition-btn btn me-3 active" [disabled]="arrOfTables.length < 1"
             (click)="firstPartitionBtn()">First Partition</button>
           <button class="second-partition-btn btn me-3" [disabled]="arrOfTables.length < 7"
-            (click)="secondPartitionBtn()">Second Partition</button>
+            (click)="secondPartitionBtn()">Second
+            Partition</button>
           <button class="third-partition-btn btn" [disabled]="arrOfTables.length < 13"
-            (click)="thirdPartitionBtn()">Third Partition</button>
+            (click)="thirdPartitionBtn()">Third
+            Partition</button>
           <button class="fourth-partition-btn btn" [disabled]="arrOfTables.length < 19"
-            (click)="fourthPartitionBtn()">Fourth Partition</button>
+            (click)="fourthPartitionBtn()">Fourth
+            Partition</button>
         </div>
       </div>
     </div>
