@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-4 col-sm-6 my-4" *ngFor="let item of arrOfMenu | searchMenu: term | searchMeneByCat: termCat">
+    <div class="item-card">
+      <div class="wrapper">
+        <div class="image">
+          <img [src]="item.image" [alt]="item.name">
+          <div class="overlay" (mouseleave)="onItemMouseLeave()" *ngIf="currentSelectedTable">
+            <div class="input-group">
+              <input type="number" class="form-control" placeholder="Enter Quantity" name="quantity"
+                [(ngModel)]="itemQuantity" (keyup)="onKeyUp()">
+              <button class="btn" type="button" (click)="onAddItemToOrder(item)"
+                [disabled]="itemQuantity == undefined || validationQuantity == false">add</button>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div>
+            <h2 class="name">{{item.name}}</h2>
+          </div>
+          <div>
+            <div class="price">
+              <p>price: <span>{{item.price}} LE</span></p>
+            </div>
+            <div class="category">
+              <p>category: <span>{{item.category}}</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

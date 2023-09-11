@@ -1,0 +1,38 @@
+<div id="payments">
+  <div class="container">
+    <div class="row">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of arrOfPayments; let i =index">
+            <td>{{i +1}}</td>
+            <td>{{payment.name}}</td>
+            <td>{{payment.quantity}}</td>
+            <td>{{payment.totalPrice}} L.E</td>
+            <td>{{payment.totalPrice + (payment.totalPrice * (10 / 100))}} L.E</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prices">
+      <div class="price">
+        <p class="title">Total Price</p>
+        <p class="content">{{paymentsPrice}} L.E</p>
+      </div>
+      <div class="total-price">
+        <p class="title">Total Price With Services</p>
+        <p class="content">{{paymentsTotalPrice}} L.E</p>
+      </div>
+    </div>
+
+  </div>
+</div>

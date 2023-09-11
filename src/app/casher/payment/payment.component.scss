@@ -1,0 +1,109 @@
+@use './../../sass/variables' as *;
+
+#payments {
+  .styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    // min-width: 400px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+    thead tr {
+      background-color: $blue;
+      color: #ffffff;
+      text-align: left;
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #dddddd;
+
+        &:nth-of-type(even) {
+          background-color: #f3f3f3;
+        }
+
+        &:last-of-type {
+          border-bottom: 2px solid $blue;
+        }
+
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  .prices {
+    // border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+
+    .price,
+    .total-price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .price {
+      .title {
+        background-color: $blue;
+        color: #ffffff;
+        text-align: left;
+      }
+    }
+
+    .total-price {
+      .content {
+        background-color: $blue;
+        color: #ffffff;
+        text-align: left;
+      }
+    }
+
+    p {
+      margin-block-end: 0;
+      width: 50%;
+      padding: 10px 20px;
+    }
+
+  }
+}
+
+@media (max-width: 500px) {
+  #payments {
+    .styled-table {
+      th {
+        font-size: 10px;
+      }
+
+      td {
+        font-size: 10px;
+      }
+
+      th,
+      td {
+        padding: 8px 4px;
+      }
+
+    }
+
+    .prices {
+      p {
+        padding: 10px 5px;
+        font-size: 10px;
+      }
+    }
+  }
+}

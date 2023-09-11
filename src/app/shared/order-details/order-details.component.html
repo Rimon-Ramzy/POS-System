@@ -1,0 +1,89 @@
+<app-loading></app-loading>
+
+<div id="order-details" class="h-100">
+  <div class="header">
+    <h2>order #</h2>
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="table-num me-4">
+        <img src="./../../../../assets/img/home-icons/table.svg" width="17" height="17" alt="table">
+        <p class="mb-0 ms-2 me-1">table: <span>{{currentSelectedTable?currentSelectedTable:'--'}}</span></p>
+      </div>
+      <div class="table-guest">
+        <img src="./../../../../assets/img/home-icons/guest.svg" width="17" height="17" alt="table">
+        <p class="mb-0 ms-2 me-1">guest: <span>{{numberOfGuests?numberOfGuests:'--'}}</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- *ngIf="tableOrder.length == 0" -->
+  <div class="impty-order d-flex align-items-center flex-column mt-5" *ngIf="tableOrder?.length == 0">
+    <div class=" d-flex align-items-center justify-content-center flex-column">
+      <img src="./../../../../assets/img/home-icons/order-details.svg" width="88" height="88" alt="order-impty"
+        class="mb-5">
+      <p>No products in this moment added</p>
+    </div>
+  </div>
+  <div class="order">
+    <div class="displayItems">
+      <ng-container>
+        <div class="wrapper d-flex justify-content-center align-items-start flex-column"
+          *ngFor="let order of tableOrder; let i = index">
+          <div class="d-flex justify-content-center align-items-center mb-3">
+            <i class="fa-solid fa-circle-xmark" *ngIf="!hideDelete" (click)="onDeleteOrder(i,order)"></i>
+            <div class="d-flex justify-content-start align-items-center">
+              <div class="image">
+                <img [src]="order.image" alt="item">
+              </div>
+              <div class="content">
+                <p class="name">{{order.name}}</p>
+                <p class="m-0"><span class="price">{{order.price}}</span> | <span
+                    class="category">{{order.category}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center align-items-center align-self-end">
+            <div class="quantity">
+              <p>quantity</p>
+              <span>{{order.quantity}}</span>
+            </div>
+            <div class="total">
+              <p>total</p>
+              <span>{{order.quantity * order.price}}</span>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="calcPrice" id="print-section" *ngIf="!hideDelete">
+      <div class="header-price">
+        <div class="substotal">
+          <p>subtotal</p>
+          <span class="price">{{price != 0 ? price : '--'}} L.E</span>
+        </div>
+        <div class="service-charge">
+          <p>service <span>10%</span>:</p>
+          <span class="price">{{this.servicePrice != 0 ? this.servicePrice : '--'}}</span>
+        </div>
+      </div>
+      <div class="content-price">
+        <p>total</p>
+        <span>{{this.totalPrice != 0 ? this.totalPrice : '--'}} LE</span>
+      </div>
+      <div class="footer-price">
+        <button class="btn btn-danger cancel-btn" *ngIf="isEdit" [disabled]="!showCancelBtn"
+          (click)="onDeleteTableOrder()">cancel
+          order</button>
+        <div>
+          <button class="btn send-btn" type="button" *ngIf="!hideDelete" [disabled]="!(showUpdateBtnChanged | async)"
+            (click)="onSubmitOrder()">
+            {{isEdit ? "update order":"send order"}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <button class="btn send-btn w-100 mt-4" type="button" *ngIf="hideDelete && isEdit" (click)="goToUpdate()">Go To
+      Update
+      Order</button>
+  </div>
+</div>

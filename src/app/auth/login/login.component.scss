@@ -1,0 +1,66 @@
+@use './../../sass/mixin' as *;
+@use './../../sass/variables' as *;
+
+
+#login {
+  height: 100vh;
+  padding: 20px;
+  // background-image: url('./../../../assets/img/login/bg.jpg');
+  // background-position: center center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
+  @include rowCenterCenter;
+
+  .login-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .image {
+      width: 50%;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .form {
+      width: 45%;
+
+      .header {
+        border-bottom: $border-1;
+        margin-block-end: 20px;
+      }
+
+      h2 {
+        color: $blue;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      button {
+        background-color: $blue-600;
+        color: #FFF;
+        border: 2px solid $blue-600;
+        transition: 0.5s;
+
+        &:hover {
+          background-color: transparent;
+          color: $blue-600;
+          border: 2px solid $blue-600;
+        }
+      }
+    }
+
+    // width: 50%;
+    // background-color: #FFF;
+    // margin-inline: auto;
+    // @include rowCenterCenter;
+
+    //   .image {
+    //     width: 60%;
+    //   }
+
+    //   .form {
+    //     width: 40%;
+    //   }
+  }
+}

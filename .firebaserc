@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "fir-angular-cb0aa",
+    "pos-system": "fir-angular-cb0aa",
+    "pos": "fir-angular-cb0aa"
+  },
+  "targets": {
+    "fir-angular-cb0aa": {
+      "hosting": {
+        "pos-system": [
+          "fir-angular-cb0aa"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

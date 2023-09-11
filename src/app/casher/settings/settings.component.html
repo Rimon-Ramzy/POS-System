@@ -1,0 +1,20 @@
+<div id="settings">
+  <div class="container ps-0 ms-0">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="side-bar">
+          <ul>
+            <li><a routerLink="control/control-tables" routerLinkActive="active">Control Tables</a></li>
+            <li><a routerLink="control/manage-menu" routerLinkActive="active">Manage Menu</a></li>
+            <li><a routerLink="control/add-admin" routerLinkActive="active">Add New Admin</a></li>
+            <!-- <li><a routerLink="control/delete-admin" routerLinkActive="active">Delete Admin</a></li> -->
+            <li><a routerLink="control/all-cashers" routerLinkActive="active">All Cashers</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

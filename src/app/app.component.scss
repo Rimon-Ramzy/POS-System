@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Quicksand', sans-serif;
+}
+
+// app-sidebar {
+//   display: inline-block;
+// }
+
+// @use '~@angular/material' as mat;
+
+// @font-face {
+//   font-family: 'Quicksand', sans-serif;
+//   src: url('https: //fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+// }
+
+// $custom-typography: mat.define-typography-config($font-family: "custom-font");
+// @include mat.core($custom-typography);
+
+
+// @import '~@angular/material/theming';
+// $custom-typography: mat-typography-config($font-family: 'Quicksand');
+
+// @include angular-material-typography($custom-typography);
+
+
+// @use '@angular/material' as mat;
+// @use '@angular/material' as *;
+// $my-custom-level: mat.define-typography-level($font-family: Quicksand,
+//     $font-weight: 400,
+//     $font-size: 1rem,
+//     $line-height: 1,
+//     $letter-spacing: normal,
+//   );
+
+
+// * {
+//   font-family: $custom-typography;
+// }

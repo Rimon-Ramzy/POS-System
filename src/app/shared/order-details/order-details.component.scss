@@ -1,0 +1,442 @@
+@use './../../sass/mixin' as *;
+@use './../../sass/variables' as *;
+
+#order-details {
+  border-left: $border-1;
+  padding: 20px;
+
+  .header {
+    padding-block-end: 10px;
+    border-bottom: $border-dashed;
+
+    h2 {
+      font-weight: 600;
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+
+    .table-num,
+    .table-guest {
+      @include rowCenterCenter;
+
+      img {
+        width: 17px;
+        height: 17px;
+      }
+
+      p {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 15px;
+
+        span {
+          color: $orange-100;
+          font-weight: 600;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
+  .impty-order {
+
+    p {
+      font-weight: 500;
+      font-size: 13px;
+      width: 50%;
+      text-align: center;
+    }
+  }
+
+  .displayItems {
+    margin-block-start: 20px;
+
+    .wrapper,
+    .wrapper-orders {
+      background-color: $blue-50;
+      padding: 10px;
+      border-radius: 15px;
+      @include rowBetweenCenter;
+
+      &:not(:last-child) {
+        margin-block-end: 20px;
+      }
+
+      i {
+        font-size: 22px;
+        margin-inline-end: 10px;
+      }
+
+      .image {
+        width: 20%;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-inline-end: 10px;
+
+        img {
+          width: 100%;
+        }
+      }
+
+      .content {
+        .name {
+          font-weight: 400;
+          font-size: 17px;
+          text-transform: uppercase;
+          margin-block-end: 10px;
+        }
+
+        .price {
+          font-weight: 600;
+          font-size: 19px;
+        }
+
+        .category {
+          font-weight: 400;
+          font-size: 17px;
+          text-transform: uppercase;
+        }
+      }
+
+      .quantity,
+      .total {
+        text-align: center;
+
+        p {
+          margin-block-end: 0;
+          text-transform: uppercase;
+          font-weight: 600;
+          font-size: 15px;
+        }
+
+        span {
+          display: block;
+          font-weight: 700;
+          font-size: 30px;
+          line-height: 1;
+        }
+      }
+
+      .quantity {
+        margin-inline-end: 20px;
+      }
+    }
+  }
+
+  .calcPrice {
+    background-color: $muted-4;
+    border: $border-dashed;
+    margin-block-start: 20px;
+
+    .header-price {
+      padding: 20px;
+      border-bottom: $border-dashed;
+
+      .substotal {
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
+        margin-block-end: 15px;
+        @include rowBetweenCenter;
+
+        p {
+          margin-block-end: 0;
+        }
+      }
+
+      .service-charge {
+        font-weight: 600;
+        font-size: 18px;
+        text-transform: uppercase;
+        @include rowBetweenCenter;
+
+        p {
+          margin-block-end: 0;
+        }
+      }
+    }
+
+    .content-price {
+      padding: 20px;
+      font-weight: 600;
+      font-size: 30px;
+      text-transform: uppercase;
+      @include rowBetweenCenter;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .footer-price {
+      padding: 20px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .cancel-btn {
+        text-transform: uppercase;
+        padding: 12px 13px;
+        color: #000;
+        font-weight: 500;
+        font-size: 17px;
+      }
+
+      .send-btn {
+        text-transform: uppercase;
+        background-color: $blue-100;
+        padding: 12px 13px;
+        color: #000;
+        font-weight: 500;
+        font-size: 17px;
+        transition: 0.2s;
+
+        &:hover {
+          background-color: $blue;
+        }
+      }
+
+    }
+
+  }
+}
+
+@media print {
+  #order-details {
+    .header {
+      display: none;
+    }
+
+    .impty-order {
+      display: none;
+    }
+
+    .displayItems {
+
+      .image {
+        display: none;
+      }
+    }
+
+    .calcPrice {
+      .footer-price {
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1200px) {
+  #order-details {
+    padding: 15px;
+
+    .displayItems {
+
+      .wrapper,
+      .wrapper-orders {
+
+        i {
+          font-size: 18px;
+        }
+
+        .content {
+          .name {
+            margin-block-end: 5px;
+            font-size: 13px;
+          }
+
+          .price {
+            font-size: 13px;
+          }
+
+          .category {
+            font-size: 13px;
+          }
+        }
+
+        .quantity,
+        .total {
+
+          p {
+            font-size: 13px;
+          }
+
+          span {
+            font-size: 18px;
+          }
+        }
+
+        .quantity {
+          margin-inline-end: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  #order-details {
+    .calcPrice {
+      margin-block-start: 10px;
+
+      .header-price {
+        padding: 10px;
+
+        .substotal {
+          font-size: 15px;
+          margin-block-end: 7px;
+        }
+
+        .service-charge {
+          font-size: 15px;
+        }
+      }
+
+      .content-price {
+        padding: 10px;
+        font-size: 20px;
+      }
+
+      .footer-price {
+        padding: 10px;
+        flex-direction: column;
+
+        .cancel-btn {
+          padding: 8px 9px;
+          font-size: 13px;
+          margin-block-end: 10px
+        }
+
+        .send-btn {
+          padding: 8px 9px;
+          font-size: 13px;
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 917px) {
+  #order-details {
+    .header {
+      h2 {
+        font-size: 20px;
+      }
+
+      .table-num,
+      .table-guest {
+
+        img {
+          width: 14px;
+          height: 14px;
+        }
+
+        p {
+          font-size: 11px;
+
+          span {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 837px) {
+  #order-details {
+    .displayItems {
+
+      .wrapper,
+      .wrapper-orders {
+        padding: 5px;
+
+        i {
+          font-size: 15px;
+          margin-inline-end: 5px;
+        }
+
+        .content {
+          .name {
+            margin-block-end: 0px;
+            font-size: 11px;
+          }
+
+          .price {
+            font-size: 11px;
+          }
+
+          .category {
+            font-size: 11px;
+          }
+        }
+
+        .quantity,
+        .total {
+
+          p {
+            font-size: 11px;
+          }
+
+          span {
+            font-size: 15px;
+          }
+        }
+
+        .quantity {
+          margin-inline-end: 10px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #order-details {
+    padding: 15px;
+
+    .displayItems {
+
+      .wrapper,
+      .wrapper-orders {
+
+        i {
+          font-size: 18px;
+        }
+
+        .content {
+          .name {
+            margin-block-end: 5px;
+            font-size: 15px;
+          }
+
+          .price {
+            font-size: 15px;
+          }
+
+          .category {
+            font-size: 15px;
+          }
+        }
+
+        .quantity,
+        .total {
+
+          p {
+            font-size: 15px;
+          }
+
+          span {
+            font-size: 20px;
+          }
+        }
+
+        .quantity {
+          margin-inline-end: 10px;
+        }
+      }
+    }
+  }
+}

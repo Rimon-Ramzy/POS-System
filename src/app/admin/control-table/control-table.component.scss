@@ -1,0 +1,29 @@
+@use './../../sass/variables' as *;
+
+button {
+  width: max-content;
+  width: 80%;
+  background-color: transparent;
+  border: 0;
+  padding-block: 15px;
+  padding-inline: 10px;
+  border-bottom: $border-1;
+  color: #FFF;
+  background-color: $blue;
+  font-weight: 500;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.plus-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-radius: 50%;
+  border: 1px solid #FFF;
+  font-size: 11px;
+  line-height: 1;
+  padding: 3px;
+  margin-inline-end: 5px;
+}

@@ -1,0 +1,174 @@
+<app-loading></app-loading>
+
+<div id="manage-menu">
+  <div class="container-md">
+    <div id="add-new-item">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn add-item-btn" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        (click)="editMode = false">
+        add new item
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+        (click)="closeModal($event)" data-state-modal="bg-modal">
+        <div class="modal-dialog" data-state-modal="page-modal">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{editMode ? "update" : "add new"}} item</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form [formGroup]="menuForm" (ngSubmit)="onSubmit()">
+                <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="itemName" placeholder="Item Name" formControlName="name">
+                  <label for="itemName">Item Name</label>
+                  <div *ngIf="menuForm.controls['name'].errors && menuForm.controls['name'].touched">
+                    <p class="text-danger" *ngIf="menuForm.controls['name'].errors?.['required']">Item name is
+                      required</p>
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="itemPrice" placeholder="Item Price"
+                    formControlName="price">
+                  <label for="itemPrice">Item Price</label>
+                  <div *ngIf="menuForm.controls['price'].errors && menuForm.controls['price'].touched">
+                    <p class="text-danger" *ngIf="menuForm.controls['price'].errors?.['required']">Item price is
+                      required</p>
+                  </div>
+                </div>
+                <div class="form-floating mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="hot drinks" id="hot"
+                      formControlName="category">
+                    <label class="form-check-label" for="hot">
+                      Hot Drinks
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="soft drinks" id="soft"
+                      formControlName="category">
+                    <label class="form-check-label" for="soft">
+                      Soft Drinks
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="juices" id="juices"
+                      formControlName="category">
+                    <label class="form-check-label" for="juices">
+                      Juices
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="milkshake" id="milkshake"
+                      formControlName="category">
+                    <label class="form-check-label" for="milkshake">
+                      Milkshake
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="ice cream" id="ice cream"
+                      formControlName="category">
+                    <label class="form-check-label" for="ice cream">
+                      Ice Cream
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="sweet" id="sweet"
+                      formControlName="category">
+                    <label class="form-check-label" for="sweet">
+                      Sweet
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" name="category" type="radio" value="shisha" id="shisha"
+                      formControlName="category">
+                    <label class="form-check-label" for="shisha">
+                      Shisha
+                    </label>
+                  </div>
+                  <div *ngIf="menuForm.controls['category'].errors && menuForm.controls['category'].touched">
+                    <p class="text-danger" *ngIf="menuForm.controls['category'].errors?.['required']">Item category is
+                      required</p>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="input-group" #itemImageInput>
+                    <input type="file" class="form-control" accept="image/jpg" id="inputGroupFile02"
+                      (change)="onFileChange($event)" (click)="clickOnChooseFile = true">
+                    <label class="input-group-text" [ngClass]="!gettedImgPath && croppedImage != '' ? 'uploadImg': ''"
+                      for="inputGroupFile02" (click)="getImgPath()">
+                      <button class="p-0 border-0" type="button">Upload</button>
+                    </label>
+                  </div>
+                  <div class="cropper-image">
+                    <image-cropper [imageChangedEvent]="imgChangeEvent" [aspectRatio]="4/4" [maintainAspectRatio]="true"
+                      [resizeToWidth]="256" format="jpeg" (imageCropped)="imageCropped($event)"
+                      (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
+                      (loadImageFailed)="loadImageFailed()">
+                    </image-cropper>
+                    <div>
+                      <img [src]="croppedImage" class="img-preview mx-2">
+                    </div>
+                  </div>
+                  <div *ngIf="!editMode">
+                    <img id="itemImg" src="" alt="" class="img-fluid mx-auto mt-2 d-block">
+                  </div>
+                  <div *ngIf="clickOnChooseFile && croppedImage == ''">
+                    <p class="text-danger">Item image is required</p>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn submit" data-bs-dismiss="modal"
+                    [disabled]="menuForm.invalid">{{editMode ? "update" : "add"}} item</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="display-items">
+      <div class="search">
+        <div class="input-group">
+          <input type="text" class="form-control me-2" aria-label="Text input with dropdown button"
+            placeholder="Search for item ...">
+          <input type="text" class="form-control" aria-label="Text input with dropdown button"
+            placeholder="Search for Category ...">
+        </div>
+      </div>
+      <div style="overflow: auto;">
+        <table class="table ">
+          <thead>
+            <th></th>
+            <th class="py-3">Item Name</th>
+            <th class="py-3">Item Category</th>
+            <th class="py-3">Item Price</th>
+            <th class="py-3">Item Image</th>
+            <th class="py-3">Update Item</th>
+            <th class="py-3">Delete Item</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of arrOfMenu; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.category}}</td>
+              <td>{{item.price}} LE</td>
+              <td>
+                <img [src]="item.image" [alt]="item.name">
+              </td>
+              <td>
+                <button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" (click)="updateItem(i)">
+                  update
+                </button>
+              </td>
+              <td><button class="btn btn-outline-danger" (click)="deleteItem(i)">delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

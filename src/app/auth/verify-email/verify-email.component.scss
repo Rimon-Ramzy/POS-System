@@ -1,0 +1,78 @@
+@use './../../sass/variables' as *;
+@use './../../sass/mixin' as *;
+
+.verification {
+  height: 100vh;
+  @include rowCenterCenter;
+  background-color: $blue-100;
+
+  .wrapper {
+    position: relative;
+    box-shadow: $box-shadow;
+    background-color: #FFF;
+    padding: 3rem 1rem 2rem 1rem;
+    width: 60%;
+    text-align: center;
+
+    .email-icon {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      background-color: $blue-100;
+      border-radius: 50%;
+      @include rowCenterCenter;
+
+      i {
+        font-size: 1.5rem;
+        color: $blue;
+      }
+    }
+
+
+    h5 {
+      font-size: 0.9rem;
+      color: $blue;
+      margin-block-end: 20px;
+    }
+
+    .formGroup {
+      margin-block-end: 20px;
+
+      p {
+        margin-block-end: 0;
+      }
+
+      span {
+        font-weight: 600;
+      }
+    }
+
+    .resend-email {
+      margin-block-end: 30px;
+
+      p {
+        margin-block-end: 10px;
+      }
+
+      button {
+        background-color: $blue;
+        border: 2px solid $blue;
+        padding: 9px 15px 7px 15px;
+        font-size: 0.9rem;
+        color: #FFF;
+      }
+    }
+
+    .redirectToLogin {
+      .redirect {
+        color: $blue;
+        font-weight: 600;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

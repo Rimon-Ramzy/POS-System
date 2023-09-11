@@ -1,0 +1,119 @@
+<app-loading></app-loading>
+
+<div id="orders">
+  <div class="header">
+    <h2>orders page</h2>
+  </div>
+  <div class="orders">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6" style="margin-block-end: 20px;" *ngFor="let order of arrOfOrders"
+          (mouseover)="getCurrentOrder(order)">
+          <div class="wrapper">
+            <div class="card">
+              <div class="card-body">
+                <div class="content">
+                  <div class="card-header">
+                    <h5 class="card-title">Table {{order.table}}</h5>
+                    <p>{{order.guest}} {{order.guest == 1 ? 'Guest' : 'Guests'}}</p>
+                  </div>
+                  <div class="card-content" *ngFor="let item of order.orders">
+                    <div class="data">
+                      <div class="data-content">
+                        <h5>{{item.category}}</h5>
+                        <p>{{item.name}}</p>
+                      </div>
+                      <img [src]="item.image" [alt]="item.name">
+                    </div>
+                    <div class="numbers">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="price">
+                            <p>Price</p>
+                            <span>{{item.price}} L.E</span>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="quantity">
+                            <p>Quantity</p>
+                            <span>{{item.quantity}}</span>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="total">
+                            <p>Total Price</p>
+                            <span>{{item.totalPrice}} L.E</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div>
+                      <p>Price: {{order.price}} L.E</p>
+                      <p>Service Price: {{order.servicePrice}}</p>
+                      <p>Total Price: {{order.totalPrice}} L.E</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="buttons">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <a class="btn edit" (click)="onEditOrder(order)">Edit Order</a>
+                    <a class="btn print" (click)="onPrintOrder()">Print Order</a>
+                  </div>
+                  <a class="btn confrim" (click)="confirm(order)" *ngIf="!order.isPayed">The payment was made</a>
+                  <div class="payed" *ngIf="order.isPayed">
+                    <p class="btn">This Order Is Payed Successfully</p>
+                    <i class="fa-solid fa-check-double"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<div id="print-orders">
+  <div class="d-flex justify-content-between align-items-center">
+    <p>table Number: {{currentOrder.table}}</p>
+    <p>Guests Number: {{currentOrder.guest}}</p>
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Order</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price Of One</th>
+        <th scope="col">Total Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of currentOrder.orders; let i = index">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.quantity}}</td>
+        <td>{{item.price}} L.E</td>
+        <td>{{item.totalPrice}} L.E</td>
+      </tr>
+    </tbody>
+  </table>
+  <p>Price: {{currentOrder.price}} L.E</p>
+  <p>Service Price: {{currentOrder.servicePrice}} L.E</p>
+  <p>Total Price: {{currentOrder.totalPrice}} L.E</p>
+</div>
