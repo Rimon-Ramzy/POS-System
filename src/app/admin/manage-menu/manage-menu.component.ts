@@ -61,6 +61,9 @@ export class ManageMenuComponent implements OnInit {
   updateItem(index: any) {
     const itemImg: any = document.getElementById('itemImg');
     this.itemIndex = index;
+    console.log("update");
+    this.editMode = true;
+
     const item = this.casherService.getItemFromMenu(this.itemIndex!);
     this.menuForm.get('name')?.setValue(item.name);
     this.menuForm.get('category')?.setValue(item.category);
